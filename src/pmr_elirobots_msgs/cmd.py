@@ -1,7 +1,7 @@
-from pydantic.dataclasses import dataclass
-from dataclasses_json import dataclass_json
-
 from typing import Optional
+
+from dataclasses_json import dataclass_json
+from pydantic.dataclasses import Field, dataclass
 
 from pmr_elirobots_msgs.header import Header
 
@@ -18,6 +18,17 @@ class JointCommand:
     joint5: Optional[float] = None
     joint6: Optional[float] = None
 
+    @property
+    def as_list(self):
+        return [
+            self.joint1,
+            self.joint2,
+            self.joint3,
+            self.joint4,
+            self.joint5,
+            self.joint6,
+        ]
+
     def to_json(self):
         pass
 
@@ -30,11 +41,12 @@ class JointCommand:
 class JointCommandMsg:
     """Joint command with message header"""
 
-    cmd: JointCommand
-    header: Header = Header()
+    cmd: JointCommand = Field(default_factory=JointCommand)
+    header: Header = Field(default_factory=Header)
 
-    def to_json(self):
-        pass
+    def to_json(self, *args) -> str:
+        return ""
 
-    def from_json(self):
-        pass
+    @classmethod
+    def from_json(cls, *args):
+        return cls()
