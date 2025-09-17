@@ -29,11 +29,12 @@ class JointCommand:
             self.joint6,
         ]
 
-    def to_json(self):
-        pass
+    def to_json(self, *args) -> str:
+        return ""
 
-    def from_json(self):
-        pass
+    @classmethod
+    def from_json(cls, *args):
+        return cls()
 
 
 @dataclass_json
