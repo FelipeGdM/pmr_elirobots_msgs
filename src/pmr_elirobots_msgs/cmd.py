@@ -1,4 +1,3 @@
-from enum import Enum
 from typing import Optional
 
 from dataclasses_json import dataclass_json
@@ -6,6 +5,7 @@ from pydantic.dataclasses import dataclass
 from pydantic.fields import Field
 
 from pmr_elirobots_msgs.header import Header
+from pmr_elirobots_msgs.types import ClawState
 
 
 @dataclass_json
@@ -19,10 +19,6 @@ class Command:
     joint4: Optional[float] = None
     joint5: Optional[float] = None
     joint6: Optional[float] = None
-
-    class ClawState(Enum):
-        OPEN = 0
-        CLOSE = 1
 
     claw: Optional[ClawState] = None
 
