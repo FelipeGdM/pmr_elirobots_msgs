@@ -1,7 +1,8 @@
 from typing import Optional
 
 from dataclasses_json import dataclass_json
-from pydantic.dataclasses import Field, dataclass
+from pydantic.dataclasses import dataclass
+from pydantic.fields import Field
 
 from pmr_elirobots_msgs.header import Header
 
