@@ -1,6 +1,6 @@
 [project]
 name = "pmr-elirobots-msgs"
-version = "0.0.1"
+version = "0.0.2rc2"
 description = ""
 authors = [
     { name = "Felipe Gomes de Melo D'Elia", email = "felipegmelo@usp.br" },
