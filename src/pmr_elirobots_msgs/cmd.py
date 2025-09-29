@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import Optional
 
 from dataclasses_json import dataclass_json
@@ -9,7 +10,7 @@ from pmr_elirobots_msgs.header import Header
 
 @dataclass_json
 @dataclass
-class JointCommand:
+class Command:
     """Position command to robot joints"""
 
     joint1: Optional[float] = None
@@ -18,6 +19,12 @@ class JointCommand:
     joint4: Optional[float] = None
     joint5: Optional[float] = None
     joint6: Optional[float] = None
+
+    class ClawState(Enum):
+        OPEN = 0
+        CLOSE = 1
+
+    claw: Optional[ClawState] = None
 
     @property
     def as_list(self):
@@ -40,10 +47,10 @@ class JointCommand:
 
 @dataclass_json
 @dataclass
-class JointCommandMsg:
+class CommandMsg:
     """Joint command with message header"""
 
-    cmd: JointCommand = Field(default_factory=JointCommand)
+    cmd: Command = Field(default_factory=Command)
     header: Header = Field(default_factory=Header)
 
     def to_json(self, *args) -> str:
